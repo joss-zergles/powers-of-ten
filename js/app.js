@@ -304,9 +304,34 @@
   const dlg = document.getElementById('settings');
   document.getElementById('settingsBtn').addEventListener('click', () => {
     document.getElementById('unlockAll').checked = S.unlockAll;
+    pwRow.hidden = true; pwMsg.textContent = '';
     dlg.showModal();
   });
-  document.getElementById('unlockAll').addEventListener('change', (e) => { S.unlockAll = e.target.checked; save(); route(); });
+  // Unlocking every level needs the grown-up password. Only its SHA-256 hash is stored here, so it isn't
+  // readable in the page source (a determined person could still edit their own localStorage).
+  const PW_HASH = 'a9beb2298a0b236052816bb749148285f7a80a7ade8d8b80fcb663d8507526b4';
+  const pwRow = document.getElementById('pwRow'), pwInput = document.getElementById('pw'), pwMsg = document.getElementById('pwMsg');
+  async function sha256(text) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+    return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('');
+  }
+  document.getElementById('unlockAll').addEventListener('change', (e) => {
+    if (e.target.checked) {
+      e.target.checked = false;
+      pwRow.hidden = false; pwMsg.textContent = 'Enter the password to unlock every level.'; pwInput.value = ''; pwInput.focus();
+      return;
+    }
+    S.unlockAll = false; save(); route();
+    pwRow.hidden = true; pwMsg.textContent = 'Levels are locked again.';
+  });
+  async function tryPassword() {
+    if (await sha256(pwInput.value.trim().toLowerCase()) !== PW_HASH) { pwMsg.textContent = '❌ Wrong password.'; pwInput.select(); return; }
+    S.unlockAll = true; save(); route();
+    document.getElementById('unlockAll').checked = true;
+    pwRow.hidden = true; pwInput.value = ''; pwMsg.textContent = '🔓 Every level is unlocked.';
+  }
+  document.getElementById('pwGo').addEventListener('click', tryPassword);
+  pwInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); tryPassword(); } });
   document.getElementById('resetAll').addEventListener('click', () => {
     if (confirm('Wipe all progress on this device and start again from level 1?')) {
       S = blank(); save(); dlg.close(); location.hash = '#/'; route();

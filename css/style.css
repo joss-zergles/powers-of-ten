@@ -190,6 +190,9 @@ details summary { cursor: pointer; color: var(--cyan); font-weight: 700; margin-
 
 /* dialogs */
 dialog { background: var(--card); color: var(--text); border: 1px solid var(--line); border-radius: var(--radius); max-width: 420px; width: calc(100% - 32px); padding: 0; }
+#pw { flex: 1; min-width: 0; font: inherit; padding: 8px 10px; border-radius: 10px; border: 2px solid var(--line); background: #0b1126; color: var(--text); }
+.pw-row { margin-top: 10px; }
+.pw-row[hidden] { display: none; }
 dialog::backdrop { background: #000a; }
 .dlg-body { padding: 20px; }
 .cel-body { text-align: center; }

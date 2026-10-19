@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=1">
+  <link rel="stylesheet" href="css/style.css?v=2">
 </head>
 <body>
   <header class="topbar">
@@ -25,6 +25,8 @@
     <form method="dialog" class="dlg-body">
       <h2>Settings ⚙️</h2>
       <label class="row gap"><input type="checkbox" id="unlockAll"> Unlock every level (skip the mastery gate)</label>
+      <div class="row gap pw-row" id="pwRow" hidden><input type="password" id="pw" placeholder="Grown-up password" autocomplete="off" aria-label="Password"><button type="button" class="btn small" id="pwGo">Unlock</button></div>
+      <p class="small" id="pwMsg"></p>
       <h3>Start again</h3>
       <p class="muted small">Wipes XP, streaks and skill progress on this device.</p>
       <button type="button" class="btn small danger" id="resetAll">Reset all progress</button>
@@ -36,6 +38,6 @@
   <script src="js/num.js?v=1"></script>
   <script src="js/gen.js?v=1"></script>
   <script src="js/lessons.js?v=1"></script>
-  <script src="js/app.js?v=1"></script>
+  <script src="js/app.js?v=2"></script>
 </body>
 </html>
