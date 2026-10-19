@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Power Up — powers of ten</title>
+  <meta name="description" content="Learn what powers are, powers of ten, standard form and unit prefixes (giga to nano), with endless practice for GCSE unit conversions.">
+  <meta name="theme-color" content="#0f1630">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=1">
+</head>
+<body>
+  <header class="topbar">
+    <a href="#/" class="brand">⚡ <span>Power Up</span></a>
+    <div class="chips" id="chips"></div>
+    <button class="icon-btn" id="settingsBtn" title="Settings" aria-label="Settings">⚙️</button>
+  </header>
+  <main id="app" tabindex="-1"></main>
+  <footer class="foot">Powers of ten for GCSE · progress is saved on this device</footer>
+
+  <dialog id="settings">
+    <form method="dialog" class="dlg-body">
+      <h2>Settings ⚙️</h2>
+      <label class="row gap"><input type="checkbox" id="unlockAll"> Unlock every level (skip the mastery gate)</label>
+      <h3>Start again</h3>
+      <p class="muted small">Wipes XP, streaks and skill progress on this device.</p>
+      <button type="button" class="btn small danger" id="resetAll">Reset all progress</button>
+      <div class="row end"><button class="btn">Done</button></div>
+    </form>
+  </dialog>
+  <dialog id="celebrate"><form method="dialog" class="dlg-body cel-body"></form></dialog>
+
+  <script src="js/num.js?v=1"></script>
+  <script src="js/gen.js?v=1"></script>
+  <script src="js/lessons.js?v=1"></script>
+  <script src="js/app.js?v=1"></script>
+</body>
+</html>
